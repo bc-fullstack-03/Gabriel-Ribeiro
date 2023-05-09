@@ -1,0 +1,35 @@
+version: "3.8"
+services:
+  backend:
+   # image: gahbr/parrot-java:latest
+    build: .
+    restart: always
+    container_name: parrot-backend
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mongodb
+      - localstack
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+  localstack:
+    image: localstack/localstack
+    container_name: localstack_demo
+    ports:
+      - "4566:4566"
+      - "4510-4559:4510-4559"
+      - "8055:8080"
+    environment:
+      - SERVICES=s3
+      - debug=1
+      - DATA_DIR=tmp/localstock/data
+      - PERSISTANCE=1
+    volumes:
+      - ~/tmp/localstack:/tmp/localstack
+      - /var/run/docker.sock:/var/run/docker.sock
+networks:
+  default:
+    name: sysmap-network
