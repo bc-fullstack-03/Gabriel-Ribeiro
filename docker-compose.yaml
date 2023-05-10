@@ -1,8 +1,8 @@
 version: "3.8"
 services:
   backend:
-   # image: gahbr/parrot-java:latest
-    build: .
+    image: gahbr/parrot-java:latest
+    #build: .
     restart: always
     container_name: parrot-backend
     ports:
