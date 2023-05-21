@@ -68,6 +68,7 @@ public class UserService implements IUserService {
             User user = optionalUser.get();
             if( encoder.matches(request.getPassword(), user.getPassword())){
                 var token = _jwtService.generateToken(user.getId());
+                response.setUsername(user.getUsername());
                 response.setUserId(user.getId());
                 response.setToken(token);
                 return response;

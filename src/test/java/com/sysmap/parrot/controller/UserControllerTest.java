@@ -83,7 +83,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void testFollowUser() {
+    public void testFollowUser() throws Exception {
         String id = "user1";
         String userId = "user2";
 
